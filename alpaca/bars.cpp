@@ -21,7 +21,7 @@ Status Bar::fromDocument(rapidjson::MemoryPoolAllocator<rapidjson::CrtAllocator>
   PARSE_DOUBLE(high_price, "h")
   PARSE_DOUBLE(low_price, "l")
   PARSE_DOUBLE(close_price, "c")
-  PARSE_UINT(volume, "v")
+  PARSE_INT(volume, "v")
 
   return Status();
 }
