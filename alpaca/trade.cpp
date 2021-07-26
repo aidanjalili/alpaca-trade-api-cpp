@@ -16,14 +16,10 @@ Status Trade::fromJSON(const std::string& json) {
     return Status(1, "Deserialized valid JSON but it wasn't a trade object");
   }
 
-  PARSE_DOUBLE(price, "price")
-  PARSE_INT(size, "size")
-  PARSE_INT(exchange, "exchange")
-  PARSE_INT(cond1, "cond1")
-  PARSE_INT(cond2, "cond2")
-  PARSE_INT(cond3, "cond3")
-  PARSE_INT(cond4, "cond4")
-  PARSE_UINT64(timestamp, "timestamp")
+  PARSE_DOUBLE(price, "p")
+  PARSE_INT(size, "s")
+  PARSE_INT(exchange, "x")
+  PARSE_UINT64(timestamp, "t")
 
   return Status();
 }
