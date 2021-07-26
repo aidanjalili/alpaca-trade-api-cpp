@@ -3,8 +3,9 @@
 
 #define PARSE_SPECIAL_STRING(var, name)                                                                                \
   if (d.HasMember(name) && d[name].IsString()) {                                                                       \
-    auto var1 = rapidjson::GenericStringRef<char>::GenericStringRef	(	d[name]);                                        \
-    var = var1.GetString();                                                                                            \
+    std::string out = d[name];                                                                                         \
+    Value a(out);                                                                                                      \
+    var = a.GetString();                                                                                               \
   }
 
 #define PARSE_STRING(var, name)                                                                                        \
