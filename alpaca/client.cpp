@@ -1069,7 +1069,6 @@ std::pair<Status, Bars> Client::getBars(const std::vector<std::string>& symbols,
   symbols_string.pop_back();
 
   httplib::Params params{
-      {"symbols", symbols_string},
       {"limit", std::to_string(limit)},
       {"timeframe", timeframe},
   };
@@ -1087,7 +1086,7 @@ std::pair<Status, Bars> Client::getBars(const std::vector<std::string>& symbols,
   }
   auto query_string = httplib::detail::params_to_query_str(params);
 
-  auto url = "/v1/bars/" + timeframe + "?" + query_string;
+  auto url = "/v2/stocks/" + symbols_string + "/bars" + "?" + query_string;
 
   httplib::SSLClient client(environment_.getAPIDataURL());
   DLOG(INFO) << "Making request to: " << url;
@@ -1104,14 +1103,15 @@ std::pair<Status, Bars> Client::getBars(const std::vector<std::string>& symbols,
     return std::make_pair(Status(1, ss.str()), bars);
   }
 
+
   DLOG(INFO) << "Response from " << url << ": " << resp->body;
-  return std::make_pair(bars.fromJSON(resp->body), bars);
+  return std::make_pair(resp->body, bars);
 }
 
 std::pair<Status, LastTrade> Client::getLastTrade(const std::string& symbol) const {
   LastTrade last_trade;
 
-  auto url = "/v1/last/stocks/" + symbol;
+  auto url = "/v2/last/stocks/" + symbol;
 
   httplib::SSLClient client(environment_.getAPIDataURL());
   DLOG(INFO) << "Making request to: " << url;
@@ -1135,7 +1135,7 @@ std::pair<Status, LastTrade> Client::getLastTrade(const std::string& symbol) con
 std::pair<Status, LastQuote> Client::getLastQuote(const std::string& symbol) const {
   LastQuote last_quote;
 
-  auto url = "/v1/last_quote/stocks/" + symbol;
+  auto url = "/v2/last_quote/stocks/" + symbol;
 
   httplib::SSLClient client(environment_.getAPIDataURL());
   DLOG(INFO) << "Making request to: " << url;
