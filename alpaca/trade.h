@@ -24,11 +24,14 @@ class Trade {
   double price;
   int size;
   int exchange;
-  int cond1;
-  int cond2;
-  int cond3;
-  int cond4;
-  uint64_t timestamp;
+  //left out conditions cuz im lazy and dont use them/need them rn
+  // int cond1;
+  // int cond2;
+  // int cond3;
+  // int cond4;
+  std::string timestamp;
+  //Note you could even have more objects -- see the alpaca apiv2 docs for more, but i rly only care abt price,
+  //and exchance/timestamp were j easy since they were already there.
 };
 
 /**
