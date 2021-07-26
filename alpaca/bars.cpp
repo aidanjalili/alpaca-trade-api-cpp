@@ -15,13 +15,14 @@ Status Bar::fromJSON(const std::string& json) {
   return fromDocument(d);
 }
 
-Status Bar::fromDocument(rapidjson::MemoryPoolAllocator<rapidjson::CrtAllocator>>& d) {
+Status Bar::fromDocument(const rapidjson::GenericValue<rapidjson::UTF8<char>, rapidjson::MemoryPoolAllocator<rapidjson::CrtAllocator>>& d)
+{
   PARSE_STRING(time, "t")
   PARSE_DOUBLE(open_price, "o")
   PARSE_DOUBLE(high_price, "h")
   PARSE_DOUBLE(low_price, "l")
   PARSE_DOUBLE(close_price, "c")
-  PARSE_INT(volume, "v")
+  PARSE_UINT(volume, "v")
 
   return Status();
 }
