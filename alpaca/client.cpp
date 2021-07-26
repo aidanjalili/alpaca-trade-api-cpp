@@ -1103,9 +1103,6 @@ std::pair<Status, Bars> Client::getBars(const std::vector<std::string>& symbols,
     return std::make_pair(Status(1, ss.str()), bars);
   }
 
-
-  DLOG(INFO) << "Response from " << url << ": " << resp->body;
-
   //Make the  bar the same as it would have been in v1
   std::string real_response = resp->body;
   int characterstoremove = 36+symbols_string.size();
@@ -1116,10 +1113,13 @@ std::pair<Status, Bars> Client::getBars(const std::vector<std::string>& symbols,
   while((pos = real_response.find("bars", pos)) != std::string::npos)
   {
     real_response.replace(pos, 1, symbols_string);
-    pos+=4;  
+    pos+=4;
   }
 
-  return std::make_pair(bars.fromJSON(resp->body), bars);
+  DLOG(INFO) << "Response from " << url << " is effectively : " << real_response;
+
+
+  return std::make_pair(bars.fromJSON(real_response), bars);
 }
 
 std::pair<Status, LastTrade> Client::getLastTrade(const std::string& symbol) const {
