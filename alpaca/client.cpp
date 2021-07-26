@@ -288,7 +288,7 @@ std::pair<Status, std::vector<Order>> Client::getOrders(const ActionStatus statu
   return std::make_pair(Status(), orders);
 }
 
-std::pair<Status, Order> Client::submitOrder(const std::string& _s,
+std::pair<Status, Order> Client::submitOrder(const std::string& symbol,
                                              const int quantity,
                                              const OrderSide side,
                                              const OrderType type,
@@ -308,7 +308,7 @@ std::pair<Status, Order> Client::submitOrder(const std::string& _s,
   writer.StartObject();
 
   writer.Key("symbol");
-  writer.String(symbols_string);
+  writer.String(symbol);
 
   writer.Key("qty");
   writer.Int(quantity);
