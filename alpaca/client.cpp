@@ -1105,16 +1105,18 @@ std::pair<Status, Bars> Client::getBars(const std::vector<std::string>& symbols,
 
   //Make the  bar the same as it would have been in v1
   std::string real_response = resp->body;
-  int characterstoremove = 36+symbols_string.size();
-  real_response = real_response.substr(0, -(36+symbols_string.size()));
-  real_response += "}";
+  // int characterstoremove = 36+symbols_string.size();
+  // real_response = real_response.substr(0, -(36+symbols_string.size()));
+  // real_response += "}";
+  //
+  // std::string::size_type pos = 0;
+  // while((pos = real_response.find("bars", pos)) != std::string::npos)
+  // {
+  //   real_response.replace(pos, 1, symbols_string);
+  //   pos+=4;
+  // }
 
-  std::string::size_type pos = 0;
-  while((pos = real_response.find("bars", pos)) != std::string::npos)
-  {
-    real_response.replace(pos, 1, symbols_string);
-    pos+=4;
-  }
+  real_respone+="}";
 
   DLOG(INFO) << "Response from " << url << " is effectively : " << real_response;
 
