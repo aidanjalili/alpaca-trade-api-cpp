@@ -308,7 +308,7 @@ std::pair<Status, Order> Client::submitOrder(const std::string& symbol,
   writer.StartObject();
 
   writer.Key("symbol");
-  writer.String(symbol);
+  writer.String(symbol.c_str();
 
   writer.Key("qty");
   writer.Int(quantity);
