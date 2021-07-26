@@ -16,7 +16,8 @@ Status Bar::fromJSON(const std::string& json) {
     return Status(1, "Deserialized valid JSON but it wasn't a bars object");
   }
 
-  PARSE_STRING(time, "t")
+  //PARSE_STRING(time, "t")
+  cout << d["t"] << endl;
   PARSE_DOUBLE(open_price, "o")
   PARSE_DOUBLE(high_price, "h")
   PARSE_DOUBLE(low_price, "l")
