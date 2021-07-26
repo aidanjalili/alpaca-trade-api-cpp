@@ -2,10 +2,8 @@
 #include <string>
 
 #define PARSE_SPECIAL_STRING(var, name)                                                                                \
-  if (d.HasMember(name) && d[name].IsString()) {                                                                       \
-    std::string out = d[name];                                                                                         \
-    Value a(out);                                                                                                      \
-    var = a.GetString();                                                                                               \
+  if (d.HasMember(name) && d[name].IsString()) {                                                                       \                                                                                     \                                                                                                    \
+    var = d[name];                                                                                                     \
   }
 
 #define PARSE_STRING(var, name)                                                                                        \
