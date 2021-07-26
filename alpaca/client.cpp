@@ -288,7 +288,7 @@ std::pair<Status, std::vector<Order>> Client::getOrders(const ActionStatus statu
   return std::make_pair(Status(), orders);
 }
 
-std::pair<Status, Order> Client::submitOrder(const std::string& symbol,
+std::pair<Status, Order> Client::submitOrder(const std::string& _s,
                                              const int quantity,
                                              const OrderSide side,
                                              const OrderType type,
@@ -1069,7 +1069,6 @@ std::pair<Status, Bars> Client::getBars(const std::vector<std::string>& symbols,
   symbols_string.pop_back();
 
   httplib::Params params{
-      {"symbols", symbols_string},
       {"limit", std::to_string(limit)},
       {"timeframe", timeframe},
   };
