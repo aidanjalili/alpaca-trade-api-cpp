@@ -1112,7 +1112,7 @@ std::pair<Status, Bars> Client::getBars(const std::vector<std::string>& symbols,
   real_response = real_response.substr(0, -(36+symbols_string.size()));
   real_response += "}";
 
-  string::size_type pos = 0;
+  std::string::size_type pos = 0;
   while((pos = real_response.find("bars", pos)) != std::string::npos)
   {
     real_response.replace(pos, 1, symbols_string);
