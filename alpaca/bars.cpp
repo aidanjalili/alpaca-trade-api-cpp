@@ -3,11 +3,13 @@
 #include "alpaca/json.h"
 #include "glog/logging.h"
 #include "rapidjson/document.h"
+#include <iostream>
 
 namespace alpaca {
 
 Status Bar::fromJSON(const std::string& json) {
   rapidjson::Document d;
+  std::cout << "sex" << std::endl;
   if (d.Parse(json.c_str()).HasParseError()) {
     return Status(1, "Received parse error when deserializing bar JSON");
   }
