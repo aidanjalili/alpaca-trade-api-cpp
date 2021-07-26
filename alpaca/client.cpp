@@ -1131,7 +1131,7 @@ std::pair<Status, Bars> Client::getBars(const std::vector<std::string>& symbols,
 std::pair<Status, LastTrade> Client::getLastTrade(const std::string& symbol) const {
   LastTrade last_trade;
 
-  auto url = "/v1/last/stocks/" + symbol;
+  auto url = "/v2/stocks/" + symbol + "/trades/latest";
 
   httplib::SSLClient client(environment_.getAPIDataURL());
   DLOG(INFO) << "Making request to: " << url;
