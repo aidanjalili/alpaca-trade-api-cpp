@@ -1112,7 +1112,7 @@ std::pair<Status, Bars> Client::getBars(const std::vector<std::string>& symbols,
   real_response = real_response.substr(0, -(36+symbols_string.size()));
   real_response += "}";
 
-  while((index = real_response.find("bars")) != std::string::npos)
+  while((thingy = real_response.find("bars")) != std::string::npos)
      real_response.replace(index, symbols_string.length(), symbols_string);
 
   return std::make_pair(bars.fromJSON(resp->body), bars);
