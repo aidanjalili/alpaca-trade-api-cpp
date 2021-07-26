@@ -1103,7 +1103,18 @@ std::pair<Status, Bars> Client::getBars(const std::vector<std::string>& symbols,
     return std::make_pair(Status(1, ss.str()), bars);
   }
 
+
   DLOG(INFO) << "Response from " << url << ": " << resp->body;
+
+  //Make the  bar the same as it would have been in v1
+  std::string real_response = resp->body;
+  int characterstoremove = 36+symbols_string.size()
+  real_response = real_response.substr(0, -(36+symbols_string.size()));
+  real_response += "}";
+  
+  while((index = my_str.find("bars")) != string::npos)
+     my_str.replace(index, symbols_string.length(), symbols_string);
+
   return std::make_pair(bars.fromJSON(resp->body), bars);
 }
 
