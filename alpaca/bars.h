@@ -3,6 +3,7 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <string>
 
 #include "alpaca/status.h"
 #include "rapidjson/document.h"
@@ -34,7 +35,7 @@ class Bar {
       const rapidjson::GenericValue<rapidjson::UTF8<char>, rapidjson::MemoryPoolAllocator<rapidjson::CrtAllocator>>& d);
 
  public:
-  uint time;
+  std::string time;
   double open_price;
   double high_price;
   double low_price;
