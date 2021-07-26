@@ -3,8 +3,7 @@
 
 #define PARSE_SPECIAL_STRING(var, name)                                                                                \
   if (d.HasMember(name) && d[name].IsString()) {                                                                       \
-    std::string stringy = d[name];                                                                                     \
-    var = stringy;                                                                                                     \
+    var = d[name].c_str().GetString();                                                                                 \
   }
 
 #define PARSE_STRING(var, name)                                                                                        \
