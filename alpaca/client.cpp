@@ -1087,7 +1087,7 @@ std::pair<Status, Bars> Client::getBars(const std::vector<std::string>& symbols,
   }
   auto query_string = httplib::detail::params_to_query_str(params);
 
-  auto url = "/v2/stocks/" + symbol_string + "/bars" + "?" + query_string;
+  auto url = "/v2/stocks/" + symbols_string + "/bars" + "?" + query_string;
 
   httplib::SSLClient client(environment_.getAPIDataURL());
   DLOG(INFO) << "Making request to: " << url;
