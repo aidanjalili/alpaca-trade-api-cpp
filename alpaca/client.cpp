@@ -1116,8 +1116,6 @@ std::pair<Status, Bars> Client::getBars(const std::vector<std::string>& symbols,
     pos+=4;
   }
 
-  real_response += "}";
-
   DLOG(INFO) << "Response from " << url << " is effectively : " << real_response;
 
 
