@@ -1108,13 +1108,14 @@ std::pair<Status, Bars> Client::getBars(const std::vector<std::string>& symbols,
 
   //Make the  bar the same as it would have been in v1
   std::string real_response = resp->body;
-  std::string str(real_response);
   int characterstoremove = 36+symbols_string.size();
   real_response = real_response.substr(0, -(36+symbols_string.size()));
   real_response += "}";
 
-  while((index = real_response.find("bars")) != std::string::npos)
-     real_response.replace(index, symbols_string.length(), symbols_string);
+  string::size_type pos = 0;
+  while((index = real_response.find("bars", pos)) != std::string::npos)
+     real_response.replace(pos, 1, symbols_string);
+     pos+=4;
 
   return std::make_pair(bars.fromJSON(resp->body), bars);
 }
