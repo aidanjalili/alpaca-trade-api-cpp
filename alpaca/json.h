@@ -3,7 +3,7 @@
 
 #define PARSE_SPECIAL_STRING(var, name)                                                                                \
   if (d.HasMember(name) && d[name].IsString()) {                                                                       \
-    var1 = rapidjson::GenericStringRef< char >::GenericStringRef	(	d[name]);                                          \
+    auto var1 = rapidjson::GenericStringRef<char>::GenericStringRef	(	d[name]);                                        \
     var = var1.GetString();                                                                                            \
   }
 
