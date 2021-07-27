@@ -49,7 +49,7 @@ class LastTrade {
   Status fromJSON(const std::string& json);
 
  public:
-  std::string status;
+  //std::string status;
   std::string symbol;
   Trade trade;
 };
