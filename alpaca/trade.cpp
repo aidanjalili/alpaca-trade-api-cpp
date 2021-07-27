@@ -36,11 +36,11 @@ Status LastTrade::fromJSON(const std::string& json) {
 
   PARSE_STRING(symbol, "symbol")
 
-  if (d.HasMember("last") && d["last"].IsObject()) {
+  if (d.HasMember("trade") && d["trade"].IsObject()) {
     rapidjson::StringBuffer s;
     s.Clear();
     rapidjson::Writer<rapidjson::StringBuffer> writer(s);
-    d["last"].Accept(writer);
+    d["trade"].Accept(writer);
     if (auto status = trade.fromJSON(s.GetString()); !status.ok()) {
       return status;
     }
