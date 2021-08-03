@@ -1110,6 +1110,12 @@ std::pair<Status, Bars> Client::getBars(const std::vector<std::string>& symbols,
   * Currently only works for one inputed stock symbol.
   */
   std::string real_response = resp->body;
+
+  if (real_response.find("null") != string::npos) //check to c if there is a 'null' response
+  {
+    std::ostringstream ss;
+    return std::make_pair(Status(1, ss.str()), bars);
+  } 
   int characterstoremove = 36+symbols_string.size();
   real_response.erase(real_response.size() - characterstoremove);
   real_response += "}";
