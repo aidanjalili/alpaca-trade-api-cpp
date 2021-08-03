@@ -1126,7 +1126,7 @@ std::pair<Status, Bars> Client::getBars(const std::vector<std::string>& symbols,
   try
   {
     auto ret = std::make_pair(bars.fromJSON(real_response), bars);
-    return std::make_pair(bars.fromJSON(real_response), bars);
+    return ret;
   }
   catch(...)
   {
