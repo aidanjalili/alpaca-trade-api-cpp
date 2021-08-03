@@ -1114,8 +1114,9 @@ std::pair<Status, Bars> Client::getBars(const std::vector<std::string>& symbols,
   if (real_response.find("null") != std::string::npos) //check to c if there is a 'null' response
   {
     std::ostringstream ss;
+    DLOG(INFO) << "sex" << real_response;
     return std::make_pair(Status(1, ss.str()), bars);
-  } 
+  }
   int characterstoremove = 36+symbols_string.size();
   real_response.erase(real_response.size() - characterstoremove);
   real_response += "}";
