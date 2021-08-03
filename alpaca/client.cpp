@@ -1123,9 +1123,16 @@ std::pair<Status, Bars> Client::getBars(const std::vector<std::string>& symbols,
   //Re-writing of response over...
 
   DLOG(INFO) << "Response from " << url << " is effectively : " << real_response;
-
-
-  return std::make_pair(bars.fromJSON(real_response), bars);
+  try
+  {
+    auto ret = std::make_pair(bars.fromJSON(real_response), bars);
+    return std::make_pair(bars.fromJSON(real_response), bars);
+  }
+  catch(...)
+  {
+    std::ostringstream ss;
+    return std::make_pair(Status(1, ss.str()), bars);
+  }
 }
 
 std::pair<Status, LastTrade> Client::getLastTrade(const std::string& symbol) const {
